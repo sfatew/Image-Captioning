@@ -12,7 +12,7 @@ cd <Image-Captioning>
 ```
 pip install -q -r requirements.txt
 ```
-* To run the model:
+## To run the model:
 ### Model Checkpoints
 The model checkpoints are stored in the drive <>
 
