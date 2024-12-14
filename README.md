@@ -27,4 +27,5 @@ python3 transformer_model_infer.py --image_path path_to_image/image.jpeg
 python3 transformer_model_pre_infer.py --image_path path_to_image/image.jpeg 
 ```
 
-## To see the deployed web
+## the web page
+We also ...
