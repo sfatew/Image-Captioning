@@ -3,8 +3,13 @@
 Generate a short caption for an image
 
 ## Enviroment setup
-Clone repository
+* To clone repository
 ```
 git clone <https://github.com/sfatew/Image-Captioning.git>
 cd <Image-Captioning>
 ```
+* To install requirements libraries:
+```
+pip install -q -r requirements.txt
+```
+
