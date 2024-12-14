@@ -14,7 +14,7 @@ pip install -q -r requirements.txt
 ```
 ## To run the model:
 ### Model Checkpoints
-The model checkpoints are stored in the drive <>
+The model checkpoints are stored in the drive <https://drive.google.com/drive/folders/14YwsskmkFAd4_RlXLIQ-CBOtrjQTsbMl>
 
 ### To run the model
 
