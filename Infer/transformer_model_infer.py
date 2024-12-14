@@ -1,4 +1,5 @@
 import sys
+import argparse
 from pathlib import Path
 import torch
 from PIL import Image
@@ -11,6 +12,12 @@ from collections import OrderedDict
 # Add the parent directory to sys.path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from model_implement.transformer import EncoderDecoder  # Your custom model definition
+
+# Define argument parser
+parser = argparse.ArgumentParser(description="Image Captioning Inference")
+parser.add_argument("--image_path", type=str, required=True, help="Path to input image")
+parser.add_argument("--model_checkpoint", type=str, default=r"../model/transf_model.pth", help="Path to model checkpoint")
+parser.add_argument("--max_length", type=int, default=50, help="Maximum caption length")
 
 
 def load_model(model_path, device, image_size, val_images, tokenizer):
@@ -42,7 +49,7 @@ def preprocess_image(image_path, image_size):
     image = Image.open(image_path).convert("RGB")
     return transform(image).unsqueeze(0)  # Add batch dimension
 
-def generate_caption(model, tokenizer, image_tensor, device):
+def generate_caption(model, tokenizer, image_tensor, max_length, device):
     """Generate captions from the model."""
 
     # Add the Start-Of-Sentence token to the prompt to signal the network to start generating the caption
@@ -60,7 +67,7 @@ def generate_caption(model, tokenizer, image_tensor, device):
             image_embedding = model.encoder(image_tensor.to(device))
 
         # Generate the answer tokens
-        for i in range(50):
+        for _ in range(max_length):
             input_tokens = torch.cat(log_tokens, 1)
 
             # Decode the input tokens into the next predicted tokens
@@ -88,25 +95,26 @@ def generate_caption(model, tokenizer, image_tensor, device):
     
     return pred_text  
 
-def main(image_path, image_size = 128):
+def main(args):
     device = torch.device("cuda" if torch.cuda.is_available() else 'cpu')
 
     # Load model and tokenizer
-    model_checkpoint = r"../model/transf_model.pth"
+    model_checkpoint = args.model_checkpoint
 
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
-    # Preprocess input image
-    image_tensor = preprocess_image(image_path, image_size).to(device)
+    image_size = 128
 
-    model = load_model(model_checkpoint, device, image_size, image_tensor, tokenizer)
+    # Preprocess input image
+    image_tensor = preprocess_image(args.image_path, image_size).to(device)
+
+    model = load_model(model_checkpoint, device,image_size, image_tensor, tokenizer)
 
     # Generate caption
-    caption = generate_caption(model, tokenizer, image_tensor, device)
+    caption = generate_caption(model, tokenizer, image_tensor, args.max_length, device)
     print(f"Generated Caption: {caption}")
 
 
 if __name__ == "__main__":
-    image_path = r"../000000000001.jpg"
-
-    main(image_path)
+    args = parser.parse_args()
+    main(args)
