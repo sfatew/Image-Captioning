@@ -24,7 +24,8 @@ You can run the each of the following commands to test each models on the image 
 
 ```
 python3 transformer_model_infer.py --image_path path_to_image/image.jpeg 
-python3 transformer_model_pre_infer.py --image_path path_to_image/image.jpeg 
+python3 transformer_model_pre_infer.py --image_path path_to_image/image.jpeg
+python3 cnn_lstm_infer.py <path_to_image/image.jpg>
 ```
 
 ## The web page
