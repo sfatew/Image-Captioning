@@ -157,7 +157,7 @@ class Image_to_Text():
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate captions for an image using a pre-trained VGG & LSTM model.")
-    parser.add_argument("image_path", type=str, help="Path to the input image")
+    parser.add_argument("--image_path", type=str, help="Path to the input image")
 
     args = parser.parse_args()
 
