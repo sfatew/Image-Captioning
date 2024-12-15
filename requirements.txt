@@ -82,8 +82,12 @@ smmap==5.0.1
 stack-data @ file:///home/conda/feedstock_root/build_artifacts/stack_data_1669632077133/work
 stringzilla==3.10.10
 sympy==1.13.3
-tensorboard==2.17.1
 tensorboard-data-server==0.7.2
+tensorboard==2.18.0
+tensorflow==2.18.0
+tensorflow-io-gcs-filesystem==0.31.0
+tensorflow_intel==2.18.0
+termcolor==2.5.0
 timm==0.9.7
 tokenizers==0.21.0
 torch==2.4.1+cu118
