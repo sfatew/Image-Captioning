@@ -39,4 +39,4 @@ python3 cnn_lstm_infer.py --image_path <path_to_image/image.jpg>
 ```
 
 ## The web page
-We also deploy our models on: https://image-captioning-ui-xi.vercel.app/
+We also deploy our models on: https://image-captioning.votaquangnhat.com/
